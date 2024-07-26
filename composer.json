@@ -1,5 +1,5 @@
 {
-    "name": "robinboost/maintenance",
+    "name": "robinboost/campaigns",
     "description": "A Laravel package to manage campaigns.",
     "type": "library",
     "license": "MIT",
@@ -15,5 +15,8 @@
             ]
         }
     },
-    "require": {}
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^10.0"
+    }
 }
