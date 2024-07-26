@@ -12,13 +12,16 @@ class CampaignsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Load routes
         $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
 
-        // Publish configuration
         $this->publishes([
             __DIR__.'/../config/campaigns.php' => config_path('campaigns.php'),
         ]);
+
+        $router = $this->app['router'];
+
+        $this->app->make(\Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class)
+            ->except(['/api/v1/reels/comments']);
     }
 
     /**
