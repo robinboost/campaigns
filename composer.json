@@ -11,7 +11,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Robust\\Campaigns\\CampaignsServiceProvider"
+                "Robinboost\\Campaigns\\CampaignsServiceProvider"
             ]
         }
     },
