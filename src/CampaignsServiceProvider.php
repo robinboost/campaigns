@@ -22,6 +22,10 @@ class CampaignsServiceProvider extends ServiceProvider
 
         $this->app->make(\Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class)
             ->except(['/api/v1/reels/comments']);
+
+        $this->commands([
+            TestCampaigns::class,
+        ]);
     }
 
     /**
