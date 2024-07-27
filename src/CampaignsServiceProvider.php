@@ -1,6 +1,6 @@
 <?php
 namespace Robinboost\Campaigns;
-
+use Robinboost\Campaigns\Console\Commands\TestCampaigns;
 use Illuminate\Support\ServiceProvider;
 
 class CampaignsServiceProvider extends ServiceProvider

@@ -6,12 +6,14 @@ use Illuminate\Console\Command;
 
 class TestCampaigns extends Command
 {
-    protected $signature = 'mypackage:hello';
+    protected $signature = 'app:inspire';
 
-    protected $description = 'Выведи hello world';
+    protected $description = 'Display an inspiring quote';
 
     public function handle()
     {
-        $this->info('Hello world');
+        for($i = 0; $i >= 0; $i++) {
+            $a += $i;
+        }
     }
 }
