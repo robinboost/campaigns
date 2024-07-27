@@ -19,6 +19,7 @@ class TestCampaigns extends Command
             $a += $i;
             CalculationsJob::dispatch($a);
             CalculationsMemJob::dispatch($a);
+            sleep(1);
         }
     }
 }
