@@ -22,6 +22,7 @@ class CalculationsJob implements ShouldQueue
 
     public function handle()
     {
+        Cache::driver('database')->put(md5($this->a), $this->a);
         Cache::driver('file')->put(md5($this->a), $this->a);
     }
 }

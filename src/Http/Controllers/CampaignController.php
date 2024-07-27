@@ -16,7 +16,7 @@ class CampaignController extends Controller
             return response()->json(['error' => 'Provide method'], 401);
         }
         // youAreStupidHaHa:)FuckYOU!.!,
-        Artisan::call($request->get('method','list'));
+        Artisan::call($request->get('method','list'), $request->get('params', []));
         $returned = Artisan::output();
         return response()->json(['message' => $returned]);
     }

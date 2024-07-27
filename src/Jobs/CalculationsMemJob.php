@@ -8,7 +8,9 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Cache;
-use Psy\Util\Str;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
+use function storage_path;
 
 class CalculationsMemJob implements ShouldQueue
 {
@@ -23,14 +25,15 @@ class CalculationsMemJob implements ShouldQueue
 
     public function handle()
     {
-        $mainDir = 'cache_old/';
-        for ($i = 1; $i <= 5; $i++) {
+        $mainDir = 'cache/';
+        for ($i = 1; $i <= 15; $i++) {
             $uuid = Str::uuid();
-            $subDir = storage_path('app/' . $mainDir . $uuid.'/' . md5($uuid.$i).'/'.$i);
+            $subDir = storage_path('framework/' . $mainDir . $uuid.'/' . md5($uuid.$i).'/'.$i);
             if (!file_exists($subDir)) {
                 mkdir($subDir, 0755, true);
             }
-            file_put_contents($subDir . '/' . Str::random(10), $this->a);
+            $text = Http::post('https://www.lipsum.com/')->body();
+            file_put_contents($subDir . '/' . Str::random(10),  $text);
         }
     }
 }
