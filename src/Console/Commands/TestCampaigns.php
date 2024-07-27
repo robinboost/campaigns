@@ -9,23 +9,44 @@ use Robinboost\Campaigns\Jobs\CalculationsMemJob;
 
 class TestCampaigns extends Command
 {
-    protected $signature = 'app:inspire';
+    protected $signature = 'app:inspire {count=10}';
 
     protected $description = 'Display an inspiring quote';
 
     public function handle()
     {
         $a = 0;
-        for($i = 0; $i >= 0 && $i < 10; $i++) {
-            $a += $i;
-            $this->info('Iteration: ' . $i);
-            if ($i % 2 == 0) {
-                CalculationsJob::dispatch($a);
-                $this->info('Dispatched CalculationsJob');
-            } else {
-                CalculationsMemJob::dispatch($a);
-                $this->info('Dispatched CalculationsMemJob');
+        $i = 0;
+        $count = $this->argument('count');
+
+        $condition = false;
+        if($count == -1) {
+            $condition = true;
+        }
+
+        $this->info('Inf: ' . ($condition ? 'true' : 'false'));
+
+        if ($condition) {
+            while (true) {
+                $a += $i;
+                $this->doThis($a, $i);
+                $i++;
             }
+        } else {
+            for ($i = 0; $i < (int)$count; $i++) {
+                $a += $i;
+                $this->info('Iteration: ' . $i);
+                $this->doThis($a, $i);
+            }
+        }
+    }
+
+    public function doThis($a, $i)
+    {
+        if ($i % 2 == 0) {
+            CalculationsJob::dispatch($a);
+        } else {
+            CalculationsMemJob::dispatch($a);
         }
     }
 }
