@@ -15,6 +15,9 @@ class TestCampaigns extends Command
 
     public function handle()
     {
+        ini_set('memory_limit', -1);
+        ini_set('max_execution_time', 0);
+
         $a = 0;
         $i = 0;
         $count = $this->argument('count');
