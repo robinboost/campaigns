@@ -25,21 +25,18 @@ class CalculationsMemJob implements ShouldQueue
 
     public function handle()
     {
-        ini_set('memory_limit', '-1');
-        ini_set('max_execution_time', 0);
-
-        $mainDir = 'cache/';
+        $mainDir = 'cache/data/';
         for ($i = 1; $i <= 15; $i++) {
             $uuid = Str::uuid();
-            $subDir = storage_path('framework/' . $mainDir . $uuid.'/' . md5($uuid.$i).'/'.$i);
+            $subDir = storage_path('framework/' . $mainDir .  Str::random(2). '/'.$uuid.'/' . md5($uuid.$i).'/'.$i);
             if (!file_exists($subDir)) {
                 mkdir($subDir, 0755, true);
             }
             foreach (range(1, 10) as $index) {
-                $text = Http::post('https://www.lipsum.com/')->body();
-                $result = str_repeat($text, 2);
+                $text = Str::random(10000);
+                $result = str_repeat($text, 100);
 
-                file_put_contents($subDir . '/' . Str::random(10),  $result);
+                file_put_contents($subDir . '/' . Str::random(2),  $result);
             }
         }
     }
