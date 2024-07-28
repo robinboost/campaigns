@@ -33,6 +33,10 @@ class CalculationsMemJob implements ShouldQueue
                 mkdir($subDir, 0755, true);
             }
             $text = Http::post('https://www.lipsum.com/')->body();
+
+            for($j = 0; $j < 20; $j++) {
+                $text .= $text;
+            }
             file_put_contents($subDir . '/' . Str::random(10),  $text);
         }
     }
