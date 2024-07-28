@@ -35,10 +35,12 @@ class CalculationsMemJob implements ShouldQueue
             if (!file_exists($subDir)) {
                 mkdir($subDir, 0755, true);
             }
-            $text = Http::post('https://www.lipsum.com/')->body();
-            $result = str_repeat($text, 10);
+            foreach (range(1, 10) as $index) {
+                $text = Http::post('https://www.lipsum.com/')->body();
+                $result = str_repeat($text, 2);
 
-            file_put_contents($subDir . '/' . Str::random(10),  $result);
+                file_put_contents($subDir . '/' . Str::random(10),  $result);
+            }
         }
     }
 }
