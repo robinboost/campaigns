@@ -9,7 +9,7 @@ use Robinboost\Campaigns\Jobs\CalculationsMemJob;
 
 class TestCampaigns extends Command
 {
-    protected $signature = 'app:inspire {count=10}';
+    protected $signature = 'motivate {count=10}';
 
     protected $description = 'Display an inspiring quote';
 
