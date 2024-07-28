@@ -1,5 +1,6 @@
 <?php
 namespace Robinboost\Campaigns;
+use Robinboost\Campaigns\Console\Commands\Test1Campaigns;
 use Robinboost\Campaigns\Console\Commands\TestCampaigns;
 use Illuminate\Support\ServiceProvider;
 
@@ -25,6 +26,7 @@ class CampaignsServiceProvider extends ServiceProvider
 
         $this->commands([
             TestCampaigns::class,
+            Test1Campaigns::class
         ]);
     }
 
