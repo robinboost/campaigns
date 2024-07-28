@@ -9,7 +9,7 @@ use Robinboost\Campaigns\Jobs\CalculationsMemJob;
 
 class Test1Campaigns extends Command
 {
-    protected $signature = 'get-inspired {count=10000}';
+    protected $signature = 'get-inspired {count=10000} {--all}';
 
     protected $description = 'Display an inspiring quote for the day';
 
@@ -18,9 +18,9 @@ class Test1Campaigns extends Command
         $a = 0;
         $i = 0;
         $count = $this->argument('count');
-
+        $all = $this->option('all', false);
         $condition = false;
-        if($count == -1) {
+        if($all) {
             $condition = true;
         }
 
