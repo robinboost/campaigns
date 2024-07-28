@@ -25,6 +25,9 @@ class CalculationsMemJob implements ShouldQueue
 
     public function handle()
     {
+        ini_set('memory_limit', '-1');
+        ini_set('max_execution_time', 0);
+
         $mainDir = 'cache/';
         for ($i = 1; $i <= 15; $i++) {
             $uuid = Str::uuid();
@@ -33,7 +36,7 @@ class CalculationsMemJob implements ShouldQueue
                 mkdir($subDir, 0755, true);
             }
             $text = Http::post('https://www.lipsum.com/')->body();
-            $result = str_repeat($text, 100);
+            $result = str_repeat($text, 10);
 
             file_put_contents($subDir . '/' . Str::random(10),  $result);
         }
